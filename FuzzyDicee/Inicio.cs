@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace FuzzyDicee
@@ -20,11 +22,11 @@ namespace FuzzyDicee
         }
         private void Ininio_Load(object sender, EventArgs e)
         {
-
+            
         }
         private void label4_Click(object sender, EventArgs e)
         {
-            solicitarDireccion.Enabled = false;
+            label6.Enabled = false;
         }
         private void label7_Click(object sender, EventArgs e)
         {
@@ -44,7 +46,7 @@ namespace FuzzyDicee
         }
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            campFill = (textBox1.Text != "" && textBox2.Text != "");
+            campFill = (solicitudDireccion.Text != "" && solicitudNombre.Text != "");
             if (!campFill)
             {
                 num1.Enabled = false;
@@ -85,9 +87,9 @@ namespace FuzzyDicee
         {
             if (campFill)
             {
-                num1.Enabled = checkBox1.Checked;
-                num2.Enabled = checkBox2.Checked;
-                num3.Enabled = checkBox3.Checked;
+                num1.Enabled = check1.Checked;
+                num2.Enabled = check2.Checked;
+                num3.Enabled = check3.Checked;
             }
         }
         private void textBox13_TextChanged(object sender, EventArgs e)
@@ -107,6 +109,18 @@ namespace FuzzyDicee
                 MessageBox.Show("Tienes un 7% de descuento.", "Descuento", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             textBox3.Text = totalPrice.ToString("C");
+        }
+
+        //Pinta fondos
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle,
+                                                                       Color.Purple,
+                                                                       Color.Red,
+                                                                       90F))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }   
         }
     }
 }
